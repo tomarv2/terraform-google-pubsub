@@ -41,3 +41,13 @@ variable "pull_subscriptions" {
   description = "The list of the pull subscriptions"
   default     = []
 }
+
+variable "push_subscriptions" {
+  type        = list(map(string))
+  description = "The list of the push subscriptions"
+  default = []
+}
+
+variable "default_ack_deadline_seconds" {
+  default = "10"
+}

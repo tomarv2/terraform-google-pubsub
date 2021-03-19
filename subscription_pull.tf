@@ -8,7 +8,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   ack_deadline_seconds = lookup(
     var.pull_subscriptions[count.index],
     "ack_deadline_seconds",
-    local.default_ack_deadline_seconds,
+    var.default_ack_deadline_seconds,
   )
   message_retention_duration = lookup(
     var.pull_subscriptions[count.index],

@@ -5,7 +5,6 @@ locals {
     "project", var.prjid
   )
 
-  name                         = var.topic_name != null ? var.topic_name : "${var.teamid}-${var.prjid}"
-  default_ack_deadline_seconds = 10
-  pubsub_svc_account_email     = "service-${var.gcp_project}@gcp-sa-pubsub.iam.gserviceaccount.com"
+  name                     = var.topic_name != null ? var.topic_name : "${var.teamid}-${var.prjid}"
+  pubsub_svc_account_email = "service-${var.gcp_project}@gcp-sa-pubsub.iam.gserviceaccount.com"
 }
