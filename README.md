@@ -79,16 +79,23 @@ tf -cloud gcloud destroy
 >
 > For more information refer to [Terraform documentation](https://www.terraform.io/docs/language/values/variables.html)
 
-##### PubSub Topic - pull
+##### PubSub Topic - pull & push subscription
 ```
 module "pubsub" {
-  source = "git::git@github.com:tomarv2/terraform-google-pubsub.git"
+  source = "../"
 
-  gcp_project = "demo-1000"
+  gcp_project = "security-269000"
+  
   pull_subscriptions = [
     {
-      name                 = "pull"
-      ack_deadline_seconds = 10
+      name = "pull"
+    },
+  ]
+
+  push_subscriptions = [
+    {
+      name          = "push"
+      push_endpoint = "https://security-269000.appspot.com/"
     },
   ]
   #-----------------------------------------------
