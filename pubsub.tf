@@ -1,6 +1,3 @@
-locals {
-  name = var.topic_name != null ? var.topic_name : "${var.teamid}-${var.prjid}"
-}
 resource "google_pubsub_topic" "topic" {
   count = var.create_topic ? 1 : 0
 

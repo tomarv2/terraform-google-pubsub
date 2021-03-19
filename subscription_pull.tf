@@ -1,12 +1,7 @@
-locals {
-  default_ack_deadline_seconds = 10
-  pubsub_svc_account_email     = "service-${var.gcp_project}@gcp-sa-pubsub.iam.gserviceaccount.com"
-}
-
 resource "google_pubsub_subscription" "pull_subscriptions" {
   count = var.create_topic ? length(var.pull_subscriptions) : 0
 
-  name    = "${var.teamid}-${var.prjid}-${var.pull_subscriptions[count.index].name}"
+  name    = "${local.name}-${var.pull_subscriptions[count.index].name}"
   topic   = google_pubsub_topic.topic.0.name
   project = var.gcp_project
   labels  = merge(local.shared_tags)
