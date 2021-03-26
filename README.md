@@ -53,17 +53,17 @@ export TF_GCLOUD_CREDENTIALS=<gcp credentials.json>
 
 - Run and verify the output before deploying:
 ```
-tf -cloud gcloud plan 
+tf -cloud gcloud plan -var='teamid=foo' -var='prjid=bar'
 ```
 
 - Run below to deploy:
 ```
-tf -cloud gcloud apply 
+tf -cloud gcloud apply -var='teamid=foo' -var='prjid=bar'
 ```
 
 - Run below to destroy:
 ```
-tf -cloud gcloud destroy
+tf -cloud gcloud destroy -var='teamid=foo' -var='prjid=bar'
 ```
 
 > ❗️ **Important** - Two variables are required for using `tf` package:
