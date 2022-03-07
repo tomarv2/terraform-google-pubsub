@@ -80,10 +80,23 @@ tf -c=gcloud destroy -var='teamid=foo' -var='prjid=bar'
 
 ##### PubSub Topic - pull & push subscription
 ```
+terraform {
+  required_version = ">= 1.0.1"
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.12.0"
+    }
+  }
+}
+
+provider "google" {
+  region  = var.region
+  project = var.project
+}
+
 module "pubsub" {
   source = "../"
-
-  gcp_project = "demo-1000"
 
   pull_subscriptions = [
     {
@@ -94,7 +107,7 @@ module "pubsub" {
   push_subscriptions = [
     {
       name          = "push"
-      push_endpoint = "https://demo-1000.appspot.com/"
+      push_endpoint = "https://${var.project}.appspot.com/"
     },
   ]
   #-----------------------------------------------
