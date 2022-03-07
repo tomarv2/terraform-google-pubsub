@@ -1,10 +1,10 @@
 resource "google_pubsub_subscription" "pull_subscriptions" {
   count = var.create_topic ? length(var.pull_subscriptions) : 0
 
-  name    = "${local.name}-${var.pull_subscriptions[count.index].name}"
-  topic   = google_pubsub_topic.topic.0.name
-  project = var.gcp_project
-  labels  = merge(local.shared_tags)
+  name  = "${local.name}-${var.pull_subscriptions[count.index].name}"
+  topic = google_pubsub_topic.topic[0].name
+
+  labels = merge(local.shared_labels)
   ack_deadline_seconds = lookup(
     var.pull_subscriptions[count.index],
     "ack_deadline_seconds",
@@ -31,7 +31,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     null,
   )
   dynamic "expiration_policy" {
-    // check if the 'expiration_policy' key exists, if yes, return a list containing it.
+    # check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = contains(keys(var.pull_subscriptions[count.index]), "expiration_policy") ? [var.pull_subscriptions[count.index].expiration_policy] : []
     content {
       ttl = expiration_policy.value
