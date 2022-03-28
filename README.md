@@ -13,9 +13,9 @@
         <img src="https://img.shields.io/twitter/follow/varuntomar2019?style=social&logo=twitter"></a>
 </p>
 
-## Terraform module to create Google PubSub
+## Terraform module for Google PubSub
 
-# Versions
+### Versions
 
 - Module tested for Terraform 1.0.1.
 - Google provider version [4.12.0](https://registry.terraform.io/providers/hashicorp/google/latest)
@@ -23,9 +23,9 @@
 - `tags` releases: Tags are pinned with versions (use <a href="https://github.com/tomarv2/terraform-google-pubsub/tags" alt="GitHub tag">
         <img src="https://img.shields.io/github/v/tag/tomarv2/terraform-google-pubsub" /></a> in your releases)
 
-## Usage
+### Usage
 
-### Option 1:
+#### Option 1:
 
 ```
 terrafrom init
@@ -35,9 +35,9 @@ terraform destroy -var='teamid=tryme' -var='prjid=project1'
 ```
 **Note:** With this option please take care of remote state storage
 
-### Option 2:
+#### Option 2:
 
-#### Recommended method (stores remote state in S3 using `prjid` and `teamid` to create directory structure):
+##### Recommended method (stores remote state in remote backend(S3,  Azure storage, or Google bucket) using `prjid` and `teamid` to create directory structure):
 
 - Create python 3.8+ virtual environment
 ```
@@ -73,11 +73,7 @@ tf -c=gcloud apply -var='teamid=foo' -var='prjid=bar'
 tf -c=gcloud destroy -var='teamid=foo' -var='prjid=bar'
 ```
 
-**NOTE:**
-
-- Read more on [tfremote](https://github.com/tomarv2/tfremote)
----
-
+**Note:** Read more on [tfremote](https://github.com/tomarv2/tfremote)
 ##### PubSub Topic - pull & push subscription
 ```
 terraform {
@@ -119,6 +115,7 @@ module "pubsub" {
 
 Please refer to examples directory [link](examples) for references.
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -171,3 +168,4 @@ No modules.
 | <a name="output_pubsub_topic_id"></a> [pubsub\_topic\_id](#output\_pubsub\_topic\_id) | PubSub topic id |
 | <a name="output_pubsub_topic_name"></a> [pubsub\_topic\_name](#output\_pubsub\_topic\_name) | PubSub topic name |
 | <a name="output_pubsub_topic_project"></a> [pubsub\_topic\_project](#output\_pubsub\_topic\_project) | PubSub topic project |
+<!-- END_TF_DOCS -->
